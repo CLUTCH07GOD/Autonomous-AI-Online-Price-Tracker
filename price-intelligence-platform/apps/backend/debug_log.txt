@@ -1,0 +1,2 @@
+--- Starting debug run ---
+ProductSpider __init__ called! url=https://httpbin.org/html

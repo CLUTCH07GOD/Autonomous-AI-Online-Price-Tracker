@@ -1,0 +1,322 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 18% 97%;
+    --foreground: 222 35% 9%;
+    --card: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 35% 9%;
+    --border: 218 18% 84%;
+    --input: 218 18% 84%;
+    --ring: 245 58% 51%;
+    --muted: 216 20% 92%;
+    --muted-foreground: 221 11% 42%;
+    --secondary: 210 24% 94%;
+    --secondary-foreground: 222 35% 12%;
+    --accent: 245 58% 91%;
+    --accent-foreground: 245 58% 20%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --primary: 245 58% 51%;
+    --primary-foreground: 0 0% 100%;
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glow-primary: rgba(99, 102, 241, 0.4);
+    --glow-accent: rgba(168, 85, 247, 0.35);
+    --neon-blue: rgba(59, 130, 246, 0.5);
+    --neon-purple: rgba(168, 85, 247, 0.5);
+    --neon-cyan: rgba(34, 211, 238, 0.4);
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 4%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 245 58% 51%;
+    --muted: 216 34% 17%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-white/5;
+  }
+  body {
+    @apply bg-[#06060f] text-neutral-100 antialiased selection:bg-indigo-500/30;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+  img,
+  svg {
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   GLASSMORPHISM SYSTEM
+   ============================================ */
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-md border border-white/[0.08];
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-xl border border-white/[0.08] rounded-3xl;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    box-shadow: 
+      0 0 0 1px rgba(255,255,255,0.03) inset,
+      0 8px 24px rgba(0,0,0,0.32),
+      0 2px 8px rgba(0,0,0,0.22);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-500;
+  }
+  .glass-card-hover:hover {
+    border-color: rgba(255,255,255,0.15);
+    box-shadow: 
+      0 0 0 1px rgba(99,102,241,0.1) inset,
+      0 8px 30px rgba(99,102,241,0.08),
+      0 16px 42px rgba(0,0,0,0.35);
+    transform: translateY(-1px);
+  }
+
+  .glass-sidebar {
+    @apply backdrop-blur-xl border-r border-white/[0.06];
+    background: linear-gradient(180deg, rgba(10,10,20,0.9) 0%, rgba(10,10,20,0.96) 100%);
+  }
+
+  .glass-input {
+    @apply min-w-0 backdrop-blur-md border border-white/10 rounded-xl bg-white/[0.03] px-4 py-3 text-white
+           placeholder-neutral-500 outline-none transition-all duration-200;
+  }
+  .glass-input:focus {
+    border-color: rgba(99,102,241,0.5);
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.1), 0 0 20px rgba(99,102,241,0.1);
+  }
+
+  .glass-button {
+    @apply relative overflow-hidden rounded-xl px-6 py-3 font-bold text-white transition-all duration-200;
+    background: linear-gradient(135deg, rgba(99,102,241,0.9), rgba(139,92,246,0.9));
+    box-shadow: 0 0 16px rgba(99,102,241,0.24), 0 4px 14px rgba(0,0,0,0.28);
+  }
+  .glass-button:hover {
+    box-shadow: 0 0 22px rgba(99,102,241,0.35), 0 4px 18px rgba(0,0,0,0.34);
+    transform: translateY(-1px);
+  }
+
+  .glass-table-row {
+    @apply transition-all duration-300 border-b border-white/[0.03];
+  }
+  .glass-table-row:hover {
+    background: rgba(99,102,241,0.04);
+  }
+
+  /* Glow effects */
+  .shadow-glow {
+    box-shadow: 0 0 16px rgba(99, 102, 241, 0.32);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 24px rgba(99, 102, 241, 0.34), 0 0 42px rgba(139, 92, 246, 0.16);
+  }
+
+  .shadow-glow-sm {
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.3);
+  }
+
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(139,92,246,0.1), transparent, rgba(99,102,241,0.2));
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+  }
+
+  /* Neon effects */
+  .neon-text {
+    text-shadow: 0 0 10px rgba(99,102,241,0.5), 0 0 20px rgba(99,102,241,0.3);
+  }
+
+  .neon-border {
+    box-shadow: 0 0 5px rgba(99,102,241,0.3), inset 0 0 5px rgba(99,102,241,0.1);
+  }
+
+  /* Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/20;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float-delayed {
+  animation: float-delayed 7s ease-in-out 1s infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(99,102,241,0.2); }
+  50% { box-shadow: 0 0 40px rgba(99,102,241,0.4), 0 0 60px rgba(139,92,246,0.2); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes mesh-move {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(50px, -30px) scale(1.05); }
+  50% { transform: translate(-20px, 40px) scale(0.95); }
+  75% { transform: translate(-40px, -20px) scale(1.02); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.animate-mesh {
+  animation: mesh-move 20s ease-in-out infinite;
+}
+
+@keyframes mesh-move-alt {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-40px, 30px) scale(0.97); }
+  50% { transform: translate(30px, -40px) scale(1.03); }
+  75% { transform: translate(20px, 20px) scale(0.98); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.animate-mesh-alt {
+  animation: mesh-move-alt 25s ease-in-out infinite;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateY(-30px) translateX(15px) scale(1.1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-15px) translateX(-10px) scale(0.9);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateY(-40px) translateX(5px) scale(1.05);
+    opacity: 0.6;
+  }
+}
+
+@keyframes shine-sweep {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+.animate-shine {
+  animation: shine-sweep 3s ease-in-out infinite;
+}
+
+@keyframes border-glow-rotate {
+  0% { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+/* Ripple effect for buttons */
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* GPU Acceleration hints */
+.gpu-accelerated {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
